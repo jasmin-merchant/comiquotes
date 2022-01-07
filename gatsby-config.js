@@ -3,5 +3,18 @@ module.exports = {
     siteUrl: "https://comiquotes.gatsbyjs.io",
     title: "ComiQuotes",
   },
-  plugins: ["gatsby-plugin-postcss"],
+  plugins: [
+    "gatsby-plugin-postcss",
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Audiowide`,
+          `Quicksand`
+        ],
+        display: 'swap'
+      }
+    }
+  ],
+  
 };
