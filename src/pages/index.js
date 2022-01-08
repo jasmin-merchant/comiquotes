@@ -1,17 +1,17 @@
 import * as React from "react";
 import Header from "../components/header.component";
+import UniverseSection from "../components/universe-section.component";
 
 const IndexPage = () => {
   return (
-    <div>
+    <div className="dark:bg-stone-900">
       <Header />
-      <main className="container-xl px-24 h-screen flex justify-items-center items-center">
+      <main className="">
         <title>ComiQuotes</title>
-        <div className="flex-1">
-          <h1 className="text-5xl text-center font-audiowide">
-            <span className="text-red-900">Comi</span>Quotes
-          </h1>
-        </div>
+        <section className="flex">
+            <UniverseSection type="dcu" />
+            <UniverseSection type="mcu" />
+        </section>
       </main>
     </div>
   );
