@@ -36,11 +36,9 @@ const RandomQuote = ({ type }) => {
     }
   }, [type]);
 
-  console.log(randomQuote.data.quote);
-
   return (
     <div className="font-audiowide w-3/5 mx-auto dark:text-white">
-      {randomQuote && randomQuote.data  ? (
+      {randomQuote && randomQuote.data ? (
         <div>
           <div>
             <p className="quote text-center">{randomQuote.data.quote}</p>
@@ -51,9 +49,7 @@ const RandomQuote = ({ type }) => {
               className="dark:text-white mr-4 hover:cursor-pointer"
               icon={faCopy}
               onClick={() => {
-                navigator.clipboard.writeText(
-                  randomQuote.data.quote
-                );
+                navigator.clipboard.writeText(randomQuote.data.quote);
               }}
             />
             <FontAwesomeIcon
