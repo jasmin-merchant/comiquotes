@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy, faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import React, { useState, useEffect } from "react"
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCopy, faSyncAlt } from "@fortawesome/free-solid-svg-icons"
+
+import dccomicsGIF from "../images/gifs/dccomics.gif"
+import mcuGIF from "../images/gifs/mcu.gif"
 
 const RandomQuote = ({ type }) => {
   const [randomQuote, setRandomQuote] = useState({});
@@ -26,7 +30,7 @@ const RandomQuote = ({ type }) => {
   };
 
   useEffect(() => {
-    setQuoteData(type)
+    setQuoteData(type);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type]);
 
@@ -75,7 +79,19 @@ const RandomQuote = ({ type }) => {
           </div>
         </div>
       ) : (
-        <div>No Quotes</div>
+        <div>
+          {type === "dcu" ? (
+            <div>
+              <img className="h-48 mx-auto" src={dccomicsGIF} alt="DC Comics" />
+              <p className="font-audiowide text-center">Loading Quote...</p>
+            </div>
+          ) : (
+            <div>
+              <img className="h-48 mx-auto" src={mcuGIF} alt="DC Comics" />
+              <p className="font-audiowide text-center">Loading Quote...</p>
+            </div>
+          )}
+        </div>
       )}
     </div>
   );
