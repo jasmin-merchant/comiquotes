@@ -5,57 +5,72 @@ import { faCopy, faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 const RandomQuote = ({ type }) => {
   const [randomQuote, setRandomQuote] = useState({});
 
-  //   useEffect(() => {
-  //       fetch("https://akabab.github.io/superhero-api/api/all.json")
-  //         .then(response => response.json())
-  //         .then(result => setRandomQuote(response))
-  //         .catch(error => console.log('error', error));
-  //   }, []);
+  const getQuoteData = async (type) => {
+    return await fetch(
+      `https://superhero-quotes.herokuapp.com/grab?banner=${type}&size=1`
+    )
+      .then((response) => response.json())
+      .then((quoteResult) => {
+        const quoteData = quoteResult.Items[0];
+        return quoteData;
+      })
+      .catch((error) => {
+        console.log("error", error);
+        return null;
+      });
+  };
+
+  const setQuoteData = async (type) => {
+    const quoteData = await getQuoteData(type);
+    setRandomQuote(quoteData);
+  };
 
   useEffect(() => {
-    if (type === "dcu") {
-      const randomQuoteVal = {
-        id: "BJBmaixf27TepVXj55Qnf6",
-        data: {
-          author: "Harley Quinn",
-          quote:
-            "Every woman has a crazy side that only the right man can bring out.",
-        },
-      };
-      setRandomQuote(randomQuoteVal);
-    } else {
-      const randomQuoteVal = {
-        id: "HFTmV9cxK6u2yLanUesRai",
-        data: {
-          author: "Iron Man",
-          quote:
-            "You know what, give me a break, Steve. I just got hit in the head with a Hulk.",
-        },
-      };
-      setRandomQuote(randomQuoteVal);
-    }
+    setQuoteData(type);
   }, [type]);
 
   return (
-    <div className="font-audiowide w-3/5 mx-auto dark:text-white">
+    <div className="font-audiowide dark:text-white">
       {randomQuote && randomQuote.data ? (
         <div>
           <div>
             <p className="quote text-center">{randomQuote.data.quote}</p>
             <p className="author text-right">- {randomQuote.data.author}</p>
           </div>
-          <div className="action-icons text-center">
-            <FontAwesomeIcon
-              className="dark:text-white mr-4 hover:cursor-pointer"
-              icon={faCopy}
-              onClick={() => {
-                navigator.clipboard.writeText(randomQuote.data.quote);
-              }}
-            />
-            <FontAwesomeIcon
-              className="dark:text-white hover:cursor-pointer"
-              icon={faSyncAlt}
-            />
+          <div className="action-icons text-center mt-6">
+            <div className="relative inline-flex flex-col items-center">
+              <div
+                className="absolute bottom-0 w-40 flex flex-col items-center hidden mb-6"
+                id={`tooltip-${type}`}
+              >
+                <span className="relative z-10 p-2 text-xs leading-none text-white dark:text-stone-900 whitespace-no-wrap bg-stone-900 dark:bg-white shadow-lg">
+                  Copied to clipboard!
+                </span>
+                <div className="w-3 h-3 -mt-2 rotate-45 bg-stone-900 dark:bg-white"></div>
+              </div>
+              <FontAwesomeIcon
+                className="dark:text-white mr-4 hover:cursor-pointer"
+                icon={faCopy}
+                onClick={() => {
+                  navigator.clipboard.writeText(randomQuote.data.quote);
+                  document
+                    .querySelector("#tooltip-" + type)
+                    .classList.remove("hidden");
+                  setTimeout(() => {
+                    document
+                      .querySelector("#tooltip-" + type)
+                      .classList.add("hidden");
+                  }, 1500);
+                }}
+              />
+            </div>
+            <div className="inline-flex">
+              <FontAwesomeIcon
+                className="dark:text-white hover:cursor-pointer"
+                icon={faSyncAlt}
+                onClick={() => setQuoteData(type)}
+              />
+            </div>
           </div>
         </div>
       ) : (

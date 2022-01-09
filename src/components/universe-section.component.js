@@ -23,7 +23,7 @@ const UniverseSection = ({ type }) => {
           />
         )}
       </div>
-      <div className="homepage-quote-rapper mt-6">
+      <div className="homepage-quote-rapper mt-6 w-3/5 mx-auto">
           <RandomQuote type={type} />
       </div>
     </article>
