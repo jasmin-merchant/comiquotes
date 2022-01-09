@@ -52,7 +52,7 @@ const RandomQuote = ({ type }) => {
                 className="dark:text-white mr-4 hover:cursor-pointer"
                 icon={faCopy}
                 onClick={() => {
-                  navigator.clipboard.writeText(randomQuote.data.quote);
+                  navigator.clipboard.writeText(randomQuote.data.quote + "\r\n\r\n- " + randomQuote.data.author);
                   document
                     .querySelector("#tooltip-" + type)
                     .classList.remove("hidden");
