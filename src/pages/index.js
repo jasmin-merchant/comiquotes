@@ -11,7 +11,7 @@ const IndexPage = () => {
 
   return (
     <div className={`dark:bg-stone-900 ${isDarkTheme ? "dark" : ""}`}>
-      <header className="w-full p-4 bg-transparent flex justify-between items-center fixed z-10">
+      <header className="w-full p-4 bg-white dark:bg-stone-900 lg:bg-transparent flex justify-between items-center relative lg:fixed z-10">
         <Logo />
         <div>
           <FontAwesomeIcon
