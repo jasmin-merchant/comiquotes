@@ -5,7 +5,7 @@ import RandomQuote from "./random-quote.component";
 const UniverseSection = ({ type }) => {
   const imageHeight = 75;
   return (
-    <article className="w-full lg:w-1/2 inline-flex flex-col h-[calc(50vh_-_41px)] lg:h-screen justify-center items-center bg-white dark:bg-stone-900">
+    <article className="w-full lg:w-1/2 inline-flex flex-col min-h-[calc(50vh_-_41px)] lg:h-screen justify-center items-center bg-white dark:bg-stone-900">
       <div className="img-wrapper">
         {type === "dcu" ? (
           <StaticImage
@@ -23,11 +23,11 @@ const UniverseSection = ({ type }) => {
           />
         )}
       </div>
-      <div className="homepage-quote-rapper mt-6 w-3/5 mx-auto">
+      <div className="homepage-quote-rapper mt-6 w-4/5 lg:w-3/5 mx-auto">
           <RandomQuote type={type} />
       </div>
     </article>
   );
-};
+}
 
 export default UniverseSection;

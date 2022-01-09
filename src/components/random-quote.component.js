@@ -16,17 +16,18 @@ const RandomQuote = ({ type }) => {
       })
       .catch((error) => {
         console.log("error", error);
-        return null;
+        return null
       });
   };
 
   const setQuoteData = async (type) => {
     const quoteData = await getQuoteData(type);
-    setRandomQuote(quoteData);
+    setRandomQuote(quoteData)
   };
 
   useEffect(() => {
-    setQuoteData(type);
+    setQuoteData(type)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type]);
 
   return (
@@ -52,7 +53,7 @@ const RandomQuote = ({ type }) => {
                 className="dark:text-white mr-4 hover:cursor-pointer"
                 icon={faCopy}
                 onClick={() => {
-                  navigator.clipboard.writeText(randomQuote.data.quote + "\r\n\r\n- " + randomQuote.data.author);
+                  navigator.clipboard.writeText(randomQuote.data.quote);
                   document
                     .querySelector("#tooltip-" + type)
                     .classList.remove("hidden");
